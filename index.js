@@ -5,6 +5,15 @@ const app = express();
 
 app.use(express.json());
 
+app.get("/api/users", (req, res) => {
+  db.find()
+    .then(users => res.status(200).json(users))
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: "The users information could not be retrieved" });
+    });
+});
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello World!');
