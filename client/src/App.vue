@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import AppBar from '@/components/AppBar.vue';
-import AppFAB from '@/components/AppFAB.vue';
+import AppBar from './components/AppBar.vue';
+import AppFAB from './components/AppFAB.vue';
 
 export default {
   name: 'App',
