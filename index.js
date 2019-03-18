@@ -57,7 +57,7 @@ app.put("/api/users/:id", (req, res) => {
       .status(404)
       .json({
         errorMessage: "Please provide name and bio for the user."
-})
+      })
       .end();
 
   db.update(id, user)
@@ -75,6 +75,23 @@ app.put("/api/users/:id", (req, res) => {
     });
 });
 
+app.delete("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+
+  db.remove(id)
+    .then(user => {
+      if (!user) {
+        return res.status(404).json({
+          message: "The user with the specified ID does not exist."
+        });
+      }
+      return res.status(204).end();
+    })
+    .catch(err => {
+      return res.status(500).json({ error: "The user could not be removed" });
+    });
+});
+
 app.listen(4000, () => {
   console.log(`The server is now running on port 4000`);
-})
+});
