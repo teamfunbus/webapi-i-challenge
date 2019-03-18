@@ -48,7 +48,32 @@ app.get("/api/users/:id", (req, res) => {
     });
 });
 
+app.put("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+  const user = req.body;
+
+  if (!user.name || !user.bio)
+    return res
+      .status(404)
+      .json({
+        errorMessage: "Please provide name and bio for the user."
 })
+      .end();
+
+  db.update(id, user)
+    .then(user => {
+      if (!user)
+        return res.status(404).json({
+          message: "The user with the specified ID does not exist."
+        });
+      return res.status(200).json(user);
+    })
+    .catch(err => {
+      return res.status(500).json({
+        error: "The user information could not be modified."
+      });
+    });
+});
 
 app.listen(4000, () => {
   console.log(`The server is now running on port 4000`);
