@@ -15,6 +15,7 @@ Use Node.js and Express to build an API that performs CRUD operations on users.
 - **Fork** and **Clone** this repository.
 - **CD into the folder** where you cloned the repository.
 - Type `yarn` or `npm install` to download all dependencies listed inside `package.json`.
+- Type `yarn bootstrap` to run the setup script we've included for you. Don't worry too much about what it's doing for now, we'll cover what it's doing for you next week.
 
 ### Database access
 
